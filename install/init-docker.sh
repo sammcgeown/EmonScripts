@@ -21,6 +21,8 @@ git checkout stable
 
 cd $openenergymonitor_dir/EmonScripts/install
 
+cp /root/config.ini $openenergymonitor_dir/EmonScripts/install/
+
 source load_config.sh
 
 if [ "$apt_get_upgrade_and_clean" = true ]; then
