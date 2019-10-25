@@ -4,8 +4,8 @@ user=$USER
 openenergymonitor_dir=/opt/openenergymonitor
 emoncms_dir=/opt/emoncms
 
-sudo apt-get update -y
-sudo apt-get install -y git-core
+sudo apt-get update -yq
+sudo apt-get install -yq git-core
 
 sudo mkdir -p $openenergymonitor_dir
 #sudo chown $user $openenergymonitor_dir
@@ -25,16 +25,16 @@ source load_config.sh
 
 if [ "$apt_get_upgrade_and_clean" = true ]; then
     echo "apt-get update"
-    sudo apt-get update -y
+    sudo apt-get update -yq
     echo "-------------------------------------------------------------"
     echo "apt-get upgrade"
-    sudo apt-get upgrade -y
+    sudo apt-get upgrade -yq
     echo "-------------------------------------------------------------"
     echo "apt-get dist-upgrade"
-    sudo apt-get dist-upgrade -y
+    sudo apt-get dist-upgrade -yq
     echo "-------------------------------------------------------------"
     echo "apt-get clean"
-    sudo apt-get clean
+    sudo apt-get clean -q
 
     # Needed on stock raspbian lite 19th March 2019
     sudo apt --fix-broken install
@@ -44,7 +44,7 @@ fi
 if [ ! -d $openenergymonitor_dir/data ]; then mkdir $openenergymonitor_dir/data; fi
 
 echo "-------------------------------------------------------------"
-sudo apt-get install -y git build-essential python-pip python-dev gettext
+sudo apt-get install -yq git build-essential python-pip python-dev gettext
 echo "-------------------------------------------------------------"
 
 if [ "$install_apache" = true ]; then $openenergymonitor_dir/EmonScripts/install/apache.sh; fi
